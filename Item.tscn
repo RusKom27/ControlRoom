@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/items.png" type="Texture" id=1]
+[ext_resource path="res://Item.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=31]
+radius = 13.0384
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 256, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 320, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 128, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 192, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=35]
+animations = [ {
+"frames": [ SubResource( 32 ) ],
+"loop": true,
+"name": "bomb_1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 37 ) ],
+"loop": true,
+"name": "bomb_2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 33 ) ],
+"loop": true,
+"name": "meat_1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 34 ) ],
+"loop": true,
+"name": "meat_2",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 38 ) ],
+"loop": true,
+"name": "sci_thing_1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 39 ) ],
+"loop": true,
+"name": "sci_thing_2",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=36]
+radius = 42.0119
+
+[node name="Item" type="RigidBody2D" groups=["Pickable"]]
+position = Vector2( 166, 202 )
+mass = 0.98
+gravity_scale = 0.0
+linear_damp = 19.385
+angular_damp = 18.459
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -2, 0 )
+shape = SubResource( 31 )
+
+[node name="Image" type="AnimatedSprite" parent="."]
+position = Vector2( -34, -36 )
+frames = SubResource( 35 )
+animation = "sci_thing_2"
+centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 36 )
