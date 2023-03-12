@@ -1,5 +1,7 @@
 extends Node
 
+onready var player = get_node("/root/Node2D/Room/YSort/Player")
+
 enum ITEM {
 	SCI_THING = 0,
 	MEAT = 1,

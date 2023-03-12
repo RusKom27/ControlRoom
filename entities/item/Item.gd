@@ -10,7 +10,6 @@ func _ready():
 	randomize()
 	interact_area.connect("area_entered", self, "_on_area_entered")
 	interact_area.connect("area_exited", self, "_on_area_exited")
-	connect("script_changed", self, "_on_script_changed")
 	$Image.animation = animations[type] + "_" + str(int(rand_range(0, 2)) + 1)
 
 func _on_area_entered(area: Area2D):
