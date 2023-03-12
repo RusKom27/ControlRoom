@@ -1,0 +1,86 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/room_stuff.png" type="Texture" id=1]
+[ext_resource path="res://entities/floor_button_ui/FloorButtonUI.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=66]
+extents = Vector2( 31, 23.5 )
+
+[sub_resource type="AtlasTexture" id=74]
+atlas = ExtResource( 1 )
+region = Rect2( 1200, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=75]
+atlas = ExtResource( 1 )
+region = Rect2( 960, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=76]
+atlas = ExtResource( 1 )
+region = Rect2( 720, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=77]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=78]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=79]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=67]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=68]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=69]
+atlas = ExtResource( 1 )
+region = Rect2( 480, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=70]
+atlas = ExtResource( 1 )
+region = Rect2( 720, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=71]
+atlas = ExtResource( 1 )
+region = Rect2( 960, 1200, 240, 240 )
+
+[sub_resource type="AtlasTexture" id=72]
+atlas = ExtResource( 1 )
+region = Rect2( 1200, 1200, 240, 240 )
+
+[sub_resource type="SpriteFrames" id=73]
+animations = [ {
+"frames": [ SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ) ],
+"loop": false,
+"name": "off",
+"speed": 15.0
+}, {
+"frames": [ SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ) ],
+"loop": false,
+"name": "on",
+"speed": 15.0
+} ]
+
+[node name="FloorButton" type="Area2D"]
+position = Vector2( 92, 334 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -1, 5.5 )
+shape = SubResource( 66 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 1, -15 )
+frames = SubResource( 73 )
+animation = "off"
+frame = 5
+playing = true
+
+[node name="BombHole" type="Node2D" parent="."]
+position = Vector2( -20, 109 )

@@ -1,9 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/room_stuff.png" type="Texture" id=1]
+[ext_resource path="res://entities/computer/Computer.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=39]
 extents = Vector2( 138.5, 109.75 )
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 960, 240, 240 )
 
 [sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 1 )
@@ -35,14 +40,24 @@ region = Rect2( 1440, 960, 240, 240 )
 
 [sub_resource type="SpriteFrames" id=47]
 animations = [ {
+"frames": [ SubResource( 49 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": true,
 "name": "working",
 "speed": 15.0
 } ]
 
+[sub_resource type="CapsuleShape2D" id=48]
+radius = 78.0
+height = 0.0
+
 [node name="Computer" type="StaticBody2D"]
 position = Vector2( 95, 141 )
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -84.5, -101.25 )
@@ -51,7 +66,15 @@ shape = SubResource( 39 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( -107, -162 )
 frames = SubResource( 47 )
-animation = "working"
-frame = 4
+animation = "idle"
 playing = true
 centered = false
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( 21, -39 )
+shape = SubResource( 48 )
+
+[node name="SciHole" type="Node2D" parent="."]
+position = Vector2( -11, -8 )

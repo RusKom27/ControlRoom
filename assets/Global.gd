@@ -1,6 +1,13 @@
 extends Node
 
-onready var player = get_node("/root/Node2D/Room/YSort/Player")
+
+enum STATE {
+	IDLE,
+	RUN,
+	HOLD_IDLE,
+	HOLD_RUN,
+	INTERACT
+}
 
 enum ITEM {
 	SCI_THING = 0,

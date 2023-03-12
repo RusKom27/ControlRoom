@@ -4,13 +4,6 @@ onready var run_effect_res = load("res://entities/run_effect/RunEffect.tscn")
 signal item_picked(item)
 signal item_dropped()
 
-enum STATE {
-	IDLE,
-	RUN,
-	HOLD_IDLE,
-	HOLD_RUN,
-}
-
 var animation_state = {
 	"idle": "idle",
 	"run": "run",
@@ -21,7 +14,7 @@ var animation_state = {
 
 const SPEED = 250
 
-onready var current_state = STATE.IDLE
+onready var current_state = Global.STATE.IDLE
 onready var current_animation = animation_state.idle
 onready var animated_sprite = $AnimatedSprite
 onready var interact_area = $Area2D
@@ -53,10 +46,13 @@ func _physics_process(_delta):
 	if direction.x != 0:
 		animated_sprite.scale.x = abs(direction.x) / direction.x
 	
-	if direction.x != 0 || direction.y != 0:
+	if (direction.x != 0 || direction.y != 0):
 		current_animation = ("hold_" if current_item else "") + animation_state.run
 	else:
 		current_animation = ("hold_" if current_item else "") + animation_state.idle
+		
+	if (current_state == Global.STATE.INTERACT):
+		current_animation = animation_state.interact
 		
 func _on_frame_changed():
 	match animated_sprite.animation:
@@ -77,6 +73,7 @@ func _on_frame_changed():
 func _on_animation_finished():
 	match animated_sprite.animation:
 		animation_state.interact:
+			current_state = Global.STATE.IDLE
 			current_animation = animation_state.idle
 
 func _input(event):

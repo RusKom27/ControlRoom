@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+onready var player = get_node("/root/Node2D/Room/YSort/Player")
+
 var animations = {
 	"idle": "idle",
 	"mouse_up": "mouse_up",
@@ -12,8 +14,8 @@ var near_items = []
 var current_animation = animations.idle
 
 func _ready():
-	Global.player.connect("item_picked", self, "_on_player_item_picked")
-	Global.player.connect("item_dropped", self, "_on_player_item_dropped")
+	player.connect("item_picked", self, "_on_player_item_picked")
+	player.connect("item_dropped", self, "_on_player_item_dropped")
 	$AnimatedSprite.connect("animation_finished", self, "_on_animation_finished")
 	$Area2D.connect("body_entered", self, "_on_body_entered")
 	$Area2D.connect("body_exited", self, "_on_body_exited")
